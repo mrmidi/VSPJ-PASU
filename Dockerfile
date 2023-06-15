@@ -5,8 +5,6 @@ WORKDIR /app
 
 ADD . /app
 
-# install git
-RUN apk add --no-cache git
 # install python3
 RUN apk add --no-cache python3
 # install pip
