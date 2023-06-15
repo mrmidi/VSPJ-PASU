@@ -1,4 +1,4 @@
-FROM quay.io/ansible/python-base:latest
+FROM quay.io/jitesoft/alpine:latest
 
 # Path: /app
 WORKDIR /app
@@ -6,7 +6,7 @@ WORKDIR /app
 ADD . /app
 
 # install git
-RUN dnf update && dnf install -y git
+RUN apk add --no-cache git
 
 # Path: /app
 RUN pip install -r requirements.txt
