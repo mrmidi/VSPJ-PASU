@@ -1,4 +1,4 @@
-FROM python:3.9
+FROM quay.io/ansible/python-base:latest
 
 # Path: /app
 WORKDIR /app
