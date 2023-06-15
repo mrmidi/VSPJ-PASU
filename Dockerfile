@@ -6,7 +6,7 @@ WORKDIR /app
 ADD . /app
 
 # install git
-RUN apt-get update && apt-get install -y git
+RUN dnf update && dnf install -y git
 
 # Path: /app
 RUN pip install -r requirements.txt
