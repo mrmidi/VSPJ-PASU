@@ -4,14 +4,24 @@ from torchaudio.pipelines import HDEMUCS_HIGH_MUSDB_PLUS
 from torchaudio.transforms import Fade
 from matplotlib import pyplot as plt
 
+
 bundle = HDEMUCS_HIGH_MUSDB_PLUS # HDEMUCS_HIGH_MUSDB_PLUS
-model = bundle.get_model().to("cpu")
+# check if cuda is available
+if torch.cuda.is_available():
+    print("CUDA is available")
+    device = torch.device("cuda:0")
+else:
+    print("CUDA is not available")
+    device = torch.device("cpu")
+
+model = bundle.get_model().to(device)
 sample_rate = bundle.sample_rate # 44100
+print(f"Sample rate: {sample_rate}")
 
 def separate_sources(audio_path):
     print("Processing audio...")
     waveform, _ = torchaudio.load(audio_path, normalize=True) #  loads and normalizes the audio file
-    waveform = waveform.to('cpu')
+    waveform = waveform.to(device) # send to device
 
     # parameters
     segment: int = 10  # segment length in seconds
@@ -45,7 +55,7 @@ def apply_model(
     overlap_frames = overlap * sample_rate  # define overlap_frames. overlap is 0.1, sample_rate is 44100
     fade = Fade(fade_in_len=0, fade_out_len=int(overlap_frames), fade_shape="linear")  # create fade object
 
-    final = torch.zeros(batch, len(model.sources), channels, length, device='cpu')  # create final tensor
+    final = torch.zeros(batch, len(model.sources), channels, length, device=device)  # create final tensor
 
     # loop through mix and apply model
     while start < length - overlap_frames:
