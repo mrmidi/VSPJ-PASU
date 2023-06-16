@@ -1,17 +1,18 @@
-FROM quay.io/jitesoft/alpine:latest
+FROM nvidia/cuda:11.8.0-base-ubuntu22.04
 
 # Path: /app
 WORKDIR /app
 
 ADD . /app
 
-
-# install python3
-RUN apk add --no-cache python3
-# install pip
-RUN apk add --no-cache py3-pip py3-scipy py3-numpy py3-matplotlib py3-pandas py3-pillow py3-lxml
-# install dev packages
-RUN apk add --no-cache gcc musl-dev python3-dev libffi-dev openssl-dev gfortran build-base g++ openblas-dev freetype-dev libpng-dev cmake
+RUN apt update && apt install -y --no-install-recommends \
+    build-essential \
+    ffmpeg \
+    git \
+    python3 \
+    python3-dev \
+    python3-pip \
+    && rm -rf /var/lib/apt/lists/*
 
 # Path: /app
 RUN pip install -r requirements.txt
