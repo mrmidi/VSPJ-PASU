@@ -35,3 +35,5 @@ docker-compose up
 1. Open the browser and go to http://localhost:5000/
 2. Upload the audio file
 3. Wait for the result. It may take a while.
+
+![Screenshot of the app](docs/ss.png)
