@@ -1,5 +1,6 @@
 # VSPJ-PASU
-Semestral work for PASU
+Semestral work for PASU. Music source separation app wrapped into Flask so it can be run as a web app.
+App is based on [Hybrid Spectrogram and Waveform Source Separation](https://arxiv.org/abs/2111.03600) paper by Alexandre Défossez and pytorch [MUSIC SOURCE SEPARATION WITH HYBRID DEMUCS](https://pytorch.org/audio/main/tutorials/hybrid_demucs_tutorial.html) tutorial.
 
 ## How to run
 1. I suppose you have python3 installed
