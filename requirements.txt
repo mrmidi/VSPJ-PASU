@@ -52,7 +52,7 @@ six==1.16.0
 stack-data==0.6.2
 submitit==1.4.5
 sympy==1.12
-torch==2.0.1
+torch==2.2.0
 torchaudio==2.0.2
 tqdm==4.65.0
 traitlets==5.9.0
